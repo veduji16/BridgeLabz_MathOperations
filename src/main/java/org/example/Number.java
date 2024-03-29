@@ -1,4 +1,3 @@
-
 package org.example;
 
 public class Number {
@@ -12,7 +11,7 @@ public class Number {
         System.out.println(value);
     }
 
-    public void forEach(Consumer<Number> consumer) {
+    public void forEach(Consumer1<Number> consumer) {
         consumer.accept(this);
     }
 }
