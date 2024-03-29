@@ -1,27 +1,32 @@
 package org.example;
 
+interface Consumer<T> {
+    void accept(T t);
+}
+
 public class MathOperations {
 
-    public static double performOperation(double a, double b, Operation operation) {
-        return operation.calculate(a, b);
-    }
-
-    @FunctionalInterface
-    public interface Operation {
-        double calculate(double a, double b);
-    }
-
-    public static void showResult(String operationName, double result) {
-        System.out.println(operationName + ": " + result);
-    }
-
     public static void main(String[] args) {
-        Operation add = (x, y) -> x + y;
-        Operation subtract = (x, y) -> x - y;
-        Operation divide = (x, y) -> y != 0 ? x / y : Double.NaN;
+        Number[] playlist = { new Number(1), new Number(3), new Number(5) };
 
-        showResult("Addition", performOperation(5, 3, add));
-        showResult("Subtraction", performOperation(10, 4, subtract));
-        showResult("Division", performOperation(12, 3, divide));
+        System.out.println("Using Class object:");
+        for (Number number : playlist) {
+            number.print();
+        }
+
+        System.out.println("\nUsing Anonymous Class:");
+        for (Number number : playlist) {
+            number.forEach(new Consumer<Number>() {
+                @Override
+                public void accept(Number number) {
+                    System.out.println(number.value);
+                }
+            });
+        }
+
+        System.out.println("\nUsing Lambda Expression:");
+        for (Number number : playlist) {
+            number.forEach(num -> System.out.println(num.value));
+        }
     }
 }
