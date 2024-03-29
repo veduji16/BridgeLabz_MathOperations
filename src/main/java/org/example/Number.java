@@ -11,7 +11,7 @@ public class Number {
         System.out.println(value);
     }
 
-    public void forEach(Consumer1<Number> consumer) {
+    public void forEach(Consumer<Number> consumer) {
         consumer.accept(this);
     }
 }
