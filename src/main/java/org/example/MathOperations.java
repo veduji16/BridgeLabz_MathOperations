@@ -41,7 +41,6 @@ public class MathOperations {
         System.out.println("Min Even: " + (minEven.isPresent() ? minEven.get() : "No even number"));
         System.out.println("Max Even: " + (maxEven.isPresent() ? maxEven.get() : "No even number"));
 
-        // Calculate sum and average
         double sum = Stream.of(playlist)
                 .mapToDouble(number -> number.value)
                 .sum();
@@ -49,5 +48,16 @@ public class MathOperations {
 
         System.out.println("\nSum of all numbers: " + sum);
         System.out.println("Average of all numbers: " + average);
+
+        boolean allEven = Stream.of(playlist)
+                .map(number -> number.value)
+                .allMatch(isEven::test);
+
+        boolean anyEven = Stream.of(playlist)
+                .map(number -> number.value)
+                .anyMatch(isEven::test);
+
+        System.out.println("\nAre all numbers even? " + allEven);
+        System.out.println("Is at least one number even? " + anyEven);
     }
 }
