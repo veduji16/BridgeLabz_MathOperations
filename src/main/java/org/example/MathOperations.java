@@ -17,25 +17,28 @@ public class MathOperations {
     }
 
     public static void main(String[] args) {
-        Number[] playlist = {new Number(1.2), new Number(3.5), new Number(5.0), new Number(2.0)};
+        Number[] playlist = {new Number(1.2), new Number(3.5), new Number(5.0), new Number(2.0), new Number(8.1)};
 
-        System.out.println("Transformed to Doubles with Peek (Demonstration):");
-        Stream<Double> doubleStream = Stream.of(playlist)
-                .peek(number -> System.out.println("Processing: " + number.value)) // Optional peek for demonstration
-                .map(number -> number.value);
+        System.out.println("Transformed to Doubles:");
+        List<Double> doubleList = Stream.of(playlist)
+                .map(number -> number.value)
+                .collect(Collectors.toList());
 
-        System.out.println("\nFind First Even Number:");
+        System.out.println(doubleList);
+
+        System.out.println("\nMin and Max Even Numbers:");
         Predicate<Double> isEven = number -> number % 2 == 0;
-        Optional<Double> firstEven = doubleStream.findFirst();
+        Optional<Double> minEven = Stream.of(playlist)
+                .map(number -> number.value)
+                .filter(isEven::test)
+                .min(Double::compareTo);
 
-        if (firstEven.isPresent()) {
-            System.out.println(firstEven.get());
-        } else {
-            System.out.println("No even number found.");
-        }
+        Optional<Double> maxEven = Stream.of(playlist)
+                .map(number -> number.value)
+                .filter(isEven::test)
+                .max(Double::compareTo);
 
-        List<Double> evenDoubleList = doubleStream.collect(Collectors.toList());
-        System.out.println("\nRemaining Even Numbers (if any):");
-        System.out.println(evenDoubleList);
+        System.out.println("Min Even: " + (minEven.isPresent() ? minEven.get() : "No even number"));
+        System.out.println("Max Even: " + (maxEven.isPresent() ? maxEven.get() : "No even number"));
     }
 }
