@@ -1,19 +1,17 @@
 package org.example;
 
-import org.example.Consumer;
+public class Number {
+    double value;
 
-class Number {
-    int value;
-
-    public Number(int value) {
+    public Number(double value) {
         this.value = value;
     }
 
-    void print() {
+    public void print() {
         System.out.println(value);
     }
 
-    void forEach(Consumer<Number> consumer) {
+    public void forEach(Consumer<Number> consumer) {
         consumer.accept(this);
     }
 }

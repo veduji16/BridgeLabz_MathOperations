@@ -7,7 +7,7 @@ interface Consumer<T> {
 public class MathOperations {
 
     public static void main(String[] args) {
-        Number[] playlist = { new Number(1), new Number(3), new Number(5) };
+        Number[] playlist = { new Number(1.2), new Number(3.5), new Number(5.0) };
 
         System.out.println("Using Class object:");
         for (Number number : playlist) {
