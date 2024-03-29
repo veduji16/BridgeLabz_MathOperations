@@ -1,8 +1,8 @@
-
-
 package org.example;
 
-public class Number {
+import org.example.Consumer;
+
+class Number {
     double value;
 
     public Number(double value) {
